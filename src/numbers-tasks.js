@@ -108,8 +108,16 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  let angle = Math.atan2(y2, x2) - Math.atan2(y1, x1);
+
+  if (angle > Math.PI) {
+    angle -= 2 * Math.PI;
+  } else if (angle < -Math.PI) {
+    angle += 2 * Math.PI;
+  }
+
+  return Math.abs(angle);
 }
 
 /**
@@ -457,16 +465,15 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
+function getFloatOnString(str) {
+  const result = Number.parseFloat(str);
 
-// const result = parseFloat(str);
-// return Number.isNaN(result) ? NaN : result;
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+  return Number.isNaN(result) ? NaN : result;
 }
 
 /**
  * Returns an integer of the specified base or, if the number cannot be parsed
- * from the argument, returns NaN.
+ * from the argument, returns NaN
  *
  * @param {string} str
  * @param {number} base
@@ -624,8 +631,8 @@ function getRandomInteger(min, max) {
  * @example:
  * 3, 4 => 5
  */
-function getHypotenuse(/* a, b */) {
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
@@ -641,8 +648,11 @@ function getHypotenuse(/* a, b */) {
  * 10 => 5
  * 15 => 8
  */
-function getCountOfOddNumbers(/* number */) {
-  throw new Error('Not implemented');
+
+function getCountOfOddNumbers(number) {
+  const absNumber = Math.abs(number);
+
+  return Math.floor((absNumber + 1) / 2);
 }
 
 module.exports = {
